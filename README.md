@@ -21,6 +21,7 @@ Edit the 4 files in the root folder changing hostname stubs and IP addresses to 
 
 #Maintenance
 - vagrant status
+
 These default to all machines, multiple machines can be specified optionally
 - vagrant up (vm)
 - vagrant halt (vm)
