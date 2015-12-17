@@ -1,0 +1,3 @@
+class ruby::config{
+
+}

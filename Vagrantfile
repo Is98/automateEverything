@@ -41,14 +41,39 @@ Vagrant.configure(2) do |config|
 		end
 	end
 	
-	for i in 1..agentCount 
-		config.vm.define "agent" + i.to_s do |agent|
-			agent.vm.hostname = agentHostnameStub + i.to_s
-			agent.vm.network "public_network"
-			
-			agent.vm.provision "agent",
-				type: "shell",
-				path: "agent.sh"
-		end
+#	for i in 1..agentCount 
+#		config.vm.define "agent" + i.to_s do |agent|
+#			agent.vm.hostname = agentHostnameStub + i.to_s + ".netbuilder.private"
+#			agent.vm.network "public_network"
+#			
+#			agent.vm.provision "agent",
+#				type: "shell",
+#				path: "agent.sh"
+#		end
+#	end
+
+	config.vm.define "agent1" do |agent|
+		agent.vm.hostname = agentHostnameStub + "1.netbuilder.private"
+		agent.vm.network "public_network", ip: "192.168.1.151"
+		agent.vm.provision "agent",
+			type: "shell",
+			path: "agent.sh"
 	end
+
+	config.vm.define "agent2" do |agent|
+		agent.vm.hostname = agentHostnameStub + "2.netbuilder.private"
+		agent.vm.network "public_network", ip: "192.168.1.152"
+		agent.vm.provision "agent",
+			type: "shell",
+			path: "agent.sh"
+	end
+
+	config.vm.define "agent3" do |agent|
+		agent.vm.hostname = agentHostnameStub + "3.netbuilder.private"
+		agent.vm.network "public_network", ip: "192.168.1.153"
+		agent.vm.provision "agent",
+			type: "shell",
+			path: "agent.sh"
+	end
+
 end
