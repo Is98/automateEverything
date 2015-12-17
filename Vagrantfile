@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 	masterHostname = "hmaster"
 	agentHostnameStub = "hagent"
 	domain   = ".netbuilder.private"
-        CPUCores = 
+        CPUCores = 2
 	masterRAM= 4568
 	agentRAM = 2048
 	
