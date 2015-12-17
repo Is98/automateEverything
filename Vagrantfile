@@ -34,7 +34,7 @@ Vagrant.configure(2) do |config|
 			masterVB.cpus = CPUCores
 		end
 		master.vm.synced_folder "modules/", "/etc/puppetlabs/code/environments/production/modules"
-
+		master.vm.synced_folder "environments/", "/etc/puppetlabs/code/environments"
 	#	master.vm.synced_folder "modules/", "/etc/puppet/modules"
 	#	master.vm.synced_folder "site_standalone/", "/etc/puppetlabs/manifests"
 	#	master.vm.provision "puppet" do |puppet|
