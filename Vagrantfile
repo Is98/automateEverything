@@ -6,14 +6,17 @@ Vagrant.configure(2) do |config|
 	agent3IP = "192.168.1.153"
 	masterHostname = "hmaster"
 	agentHostnameStub = "hagent"
+	domain   = ".netbuilder.private"
+        CPUCores = 
+	masterRAM= 4568
+	agentRAM = 2048
+	
 
-
-
-	masterFQDN = masterHostname + ".netbuilder.private"
+	masterFQDN = masterHostname + domain
 	
 	config.vm.provider :virtualbox do |masterVB|
-		masterVB.memory = 2048
-		masterVB.cpus = 2
+		masterVB.memory = agentRAM
+		masterVB.cpus = CPUCores
 	end
 	
 	config.vm.box = "ubuntu/trusty64"
@@ -27,8 +30,8 @@ Vagrant.configure(2) do |config|
 			path: "enterprise_install.sh"
 
 		master.vm.provider :virtualbox do |masterVB|
-			masterVB.memory = 4568
-			masterVB.cpus = 2
+			masterVB.memory = masterRAM
+			masterVB.cpus = CPUCores
 		end
 		master.vm.synced_folder "modules/", "/etc/puppetlabs/code/environments/production/modules"
 
@@ -54,7 +57,7 @@ Vagrant.configure(2) do |config|
 #	end
 
 	config.vm.define "agent1" do |agent|
-		agent.vm.hostname = agentHostnameStub + "1.netbuilder.private"
+		agent.vm.hostname = agentHostnameStub + "1" + domain
 		agent.vm.network "public_network", ip: agent1IP
 		agent.vm.provision "agent",
 			type: "shell",
@@ -62,7 +65,7 @@ Vagrant.configure(2) do |config|
 	end
 
 	config.vm.define "agent2" do |agent|
-		agent.vm.hostname = agentHostnameStub + "2.netbuilder.private"
+		agent.vm.hostname = agentHostnameStub + "2" + domain
 		agent.vm.network "public_network", ip: agent2IP
 		agent.vm.provision "agent",
 			type: "shell",
@@ -70,7 +73,7 @@ Vagrant.configure(2) do |config|
 	end
 
 	config.vm.define "agent3" do |agent|
-		agent.vm.hostname = agentHostnameStub + "3.netbuilder.private"
+		agent.vm.hostname = agentHostnameStub + "3" + domain
 		agent.vm.network "public_network", ip: agent3IP
 		agent.vm.provision "agent",
 			type: "shell",
